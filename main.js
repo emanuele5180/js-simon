@@ -6,15 +6,26 @@
 
 $(document).ready(function(){
 
-  var numeri = alert(getRandomIntInclusive());
-  var numeriCasuali = [numeri];
-  console.log(numeriCasuali);
+
+  var numeriCasuali = [];
 
   //alert
-  for (var i = 1; i < 5; i++) {
-    alert(getRandomIntInclusive());
+  console.log(numeriCasuali.length);
+
+  while (numeriCasuali.length<= 4 ) {
+    var numeri = getRandomIntInclusive(1,20);
+    console.log(numeri);
+
+    if (controllo(numeri,numeriCasuali)== false) {
+      alert(numeri);
+      numeriCasuali.push(numeri);
+
+    }
+
+
 
   }
+  console.log(numeriCasuali);
 
   //timer di 30 secondi
 
@@ -22,7 +33,7 @@ $(document).ready(function(){
     console.log('timer Called')
   }
 
-  timer();
+  timer(numeriInseriti());
 
   setTimeout(function(){
     timer()
@@ -33,27 +44,41 @@ $(document).ready(function(){
 
 
 
-  for (var i = 0; i < 5; i++) {
-    var numeriUtente = parseInt(prompt('inserisci i numeri'));
-    console.log(numeriUtente);
-  }
-
 
 
   //setTimeout(timer,)
 
 
 
-
 })
 
 
-
-
 //funzioni
-
 function getRandomIntInclusive(min, max) {
-  min = Math.ceil(1);
-  max = Math.floor(20);
-  return Math.floor(Math.random() * (20 - 1 + 1)) + 1; //Il max è incluso e il min è incluso
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - 1 + min)) + min; //Il max è incluso e il min è incluso
+}
+
+function controllo(val,array) {
+  for (var i = 0; i < array.length; i++) {
+
+
+
+    if (array[i]== val) {
+
+      return true;
+
+    }
+
+
+  }
+  return false;
+}
+
+function numeriInseriti() {
+  for (var i = 0; i < 5; i++) {
+    var numeriUtente = parseInt(prompt('inserisci i numeri'));
+    console.log(numeriUtente);
+  }
 }
